@@ -13,6 +13,20 @@ button {
     justify-content: space-between;
 }
 
+.buttonContainer {
+    display: flex;
+}
+
 .numContainer {
     display: flex;
+    flex-direction: column;
+}
+
+.firstSet {
+    flex-direction: row;
+}
+
+.opContainer {
+    display: flex;
+    flex-direction: column;
 }
