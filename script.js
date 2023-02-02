@@ -1,5 +1,6 @@
  
-
+const numNode = document.querySelectorAll('.number');
+const display = document.querySelector('.output');
 
 function add(addOne, addTwo){
     return addOne + addTwo;
@@ -28,3 +29,7 @@ function operate(operand, numOne, numTwo) {
         return divide(numOne,numTwo);
     }
 }
+
+numNode.forEach(number => number.addEventListener('click', () => {
+    console.log(number.id);
+}));
