@@ -1,6 +1,13 @@
  
 const numNode = document.querySelectorAll('.number');
 const display = document.querySelector('.output');
+const clear = document.querySelector('#clear');
+const add= document.querySelector('#plus');
+const subtract = document.querySelector('#minus');
+const multiply = document.querySelector('#multipy');
+const divide = document.querySelector('#divide');
+const equals = document.querySelector('#equals');
+
 
 function add(addOne, addTwo){
     return addOne + addTwo;
@@ -31,5 +38,9 @@ function operate(operand, numOne, numTwo) {
 }
 
 numNode.forEach(number => number.addEventListener('click', () => {
-    console.log(number.id);
+    display.textContent += number.id;
 }));
+
+clear.addEventListener('click', () => {
+    display.textContent = "0";
+})
