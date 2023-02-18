@@ -8,34 +8,35 @@ const subtraction = document.querySelector('#minus');
 const multiplication = document.querySelector('#multipy');
 const division = document.querySelector('#divide');
 const equals = document.querySelector('#equals');
-var variableOne = 0;
+var switchDisplay = 'on';
 var variableTwo = 0;
 var math = 'plus'; 
 
 
 numNode.forEach(number => number.addEventListener('click', () => {
-    if (display.textContent === '0'){
+    if (switchDisplay === 'on'){
+        switchDisplay = 'off'
         display.textContent = '';
     }
     if (math === 'equals'){
         display.textContent = '';
         math = "plus";
-        variableTwo = '0';
+        variableTwo = 0;
     }
     display.textContent += number.id;
 }));
 
 operand.forEach(operator => operator.addEventListener('click', () => {
     if (math === 'equals'){
+        display.textContent = '0';
+        switchDisplay = "on";
         math = 'plus';
     }
     variableTwo = operate(math, variableTwo, parseFloat(display.textContent));
-    console.log('V2:' + variableTwo);
     variableOne = parseFloat(display.textContent);
-    console.log('V1:' + variableOne);
     math = operator.id;
-    console.log('Op:' + math);
     display.textContent = "0";
+    switchDisplay = 'on';
     if (math === 'equals'){
         display.textContent = variableTwo;
     }
@@ -46,6 +47,7 @@ clear.addEventListener('click', () => {
     variableTwo = 0;
     math = 'plus';
     display.textContent = '0';
+    switchDisplay = "on";
 })
 
 
@@ -73,6 +75,9 @@ function operate(operand, numOne, numTwo) {
     }else if (operand === "multiply" ){
         return multiply(numOne,numTwo);
     }else if (operand === "divide" ){
+        if (divide(numOne, numTwo) % 1 != 0){
+            return Math.round((divide(numOne, numTwo) + Number.EPSILON) * 100) / 100;
+        }    
         return divide(numOne,numTwo);
     }
 }
